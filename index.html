@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHUCK AND CHILL - Pedidos</title>
+  
+
+  <script src="https://kit.fontawesome.com/4b0f8e8b4b.js" crossorigin="anonymous"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #fff; color: #333; }
+
+    /* Header */
+    header {
+      text-align: center;
+      background: #d32f2f;
+      color: white;
+      padding: 20px;
+    }
+    header .logo { width: 300px; }
+    header .banner { width: 100%; max-height: 450px; object-fit: cover; margin-top: 10px; }
+    .slogan { font-style: italic; margin-top: 8px; }
+
+    /* Menú */
+    main { padding: 20px; }
+    .categoria { margin-bottom: 30px; }
+    .producto {
+      border: 2px solid #d32f2f;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px 0;
+      background: #fff5f5;
+      display: inline-block;
+      width: 250px;
+      text-align: center;
+    }
+    .producto img { width: 100%; border-radius: 8px; }
+    .producto h4 { margin: 10px 0; }
+    .cantidad {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 8px 0;
+    }
+    .cantidad button {
+      background: #d32f2f;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .cantidad span { margin: 0 10px; }
+    .producto button {
+      background: #d32f2f;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .producto button:hover { background: #b71c1c; }
+
+    /* Carrito */
+    .carrito {
+      position: fixed;
+      right: 0;
+      top: 0;
+      background: white;
+      border-left: 3px solid #d32f2f;
+      padding: 20px;
+      width: 250px;
+      height: 100%;
+      overflow-y: auto;
+    }
+    .carrito button {
+      width: 100%;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .carrito button:hover { background: #1b5e20; }
+    /* 🔥 Estilos para listado de categorías */
+.menu-categorias {
+  margin: 20px 0; /* deja espacio arriba y abajo */
+}
+
+.menu-categorias a {
+  display: inline-block; /* cada botón ocupa solo su tamaño */
+  background-color: yellow;
+  color: black;
+  padding: 10px 20px;
+  margin: 0 5px 5px 0; /* separa los botones sin mover toda la página */
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.menu-categorias a:hover {
+  background-color: orange;
+  color: white;
+}
+  </style>
+</head>
+<body>
+  <!-- Header con logo y banner -->
+  <header>
+    <img src="img/logo.png" alt="Logo" class="logo">
+    <h1 style="font-size:35px;">IXTAPALUCA</h1><b><br>
+    <img src="img/banner.png" alt="Banner" class="banner">
+  </header>
+
+  <nav class="menu-categorias">
+    <a href="#BURGUERS & SANDWICHES">🍔 BURGUERS & SANDWICHES </a>
+    <a href="#SNACKS">🍟 SNACKS </a>
+    <a href="#BONELESS">🍗 BONELESS</a>
+    <a href="#BEBIDAS">🍹 BEBIDAS</a>
+    <a href="#POSTRES">🍪 POSTRES</a>
+    <a href="#OTROS">🍭 OTROS</a>
+
+  <!-- Menú -->
+  <main>
+    <h2>Menú</h2>
+    
+<div class="categoria">
+  <h3 id="BURGUERS & SANDWICHES">🍔 BURGUERS & SANDWICHES</h3>
+      <div class="producto">
+        <img src="img/hamburguesa1.jpg" alt="BACON BURGUER">
+  <h4>Bacon Burguer</h4>
+  <p> Res, tocino, manchego, aros de cebolla y BBQ</p><br>
+  <p>Incluye papas chicas</p>
+  <p>Precio base: $139</p>
+
+  <!-- Opciones adicionales -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="19"> Papas grandes (+$19)
+  </label><br>
+  <label>
+    <input type="checkbox" class="opcion" data-precio="55"> Combo (+$55)
+  </label>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+  <button onclick="agregarAlCarrito('Bacon Burguer', 139, this)">Añadir al carrito</button>
+</div>
+
+      <div class="producto">
+        <img src="img/hamburguesa2.jpg" alt="ORIGINAL BURGUER">
+  <h4>Original Burguer</h4>
+  <p> Res, lechuga, manchego, jitomate y mayonesa</p><br>
+  <p>Incluye papas chicas</p>
+  <p>Precio base: $99</p>
+
+  <!-- Opciones adicionales -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="19"> Papas grandes (+$19)
+  </label><br>
+  <label>
+    <input type="checkbox" class="opcion" data-precio="55"> Combo (+$55)
+  </label>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+  <button onclick="agregarAlCarrito('Original Burguer', 99, this)">Añadir al carrito</button>
+</div>
+
+      <div class="producto">
+        <img src="img/hamburguesa3.jpg" alt="CHICKEN SANDWICH">
+  <h4>Chicken Sandwich</h4>
+  <p> Pollo frito, ranch, lechuga y chipotle mayo</p><br>
+  <p>Incluye papas chicas</p>
+  <p>Precio base: $135</p>
+
+  <!-- Opciones adicionales -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="19"> Papas grandes (+$19)
+  </label><br>
+  <label>
+    <input type="checkbox" class="opcion" data-precio="55"> Combo (+$55)
+  </label>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+  <button onclick="agregarAlCarrito('Chicken Sandwich',135, this)">Añadir al carrito</button>
+</div>
+
+      <div class="producto">
+        <img src="img/hamburguesa4.jpg" alt="GUACAMOLE BURGUER">
+  <h4>Guacamole Burger</h4>
+  <p> Res, guacamole, mayo, tocino, manchego, y cebolla crispy</p><br>
+  <p>Incluye papas chicas</p>
+  <p>Precio base: $139</p>
+
+  <!-- Opciones adicionales -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="19"> Papas grandes (+$19)
+  </label><br>
+  <label>
+    <input type="checkbox" class="opcion" data-precio="55"> Combo (+$55)
+  </label>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+  <button onclick="agregarAlCarrito('Guacamole Burguer',139, this)">Añadir al carrito</button>
+</div><br>
+
+    <div class="producto">
+        <img src="img/hamburguesa5.jpg" alt="MANGO HABANERO CHICKEN">
+  <h4>Mango Habanero Chicken</h4>
+  <p> Pollo frito, lechuga, salsa, mango habanero y manchego</p><br>
+  <p>Incluye papas chicas</p>
+  <p>Precio base: $145</p>
+
+  <!-- Opciones adicionales -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="19"> Papas grandes (+$19)
+  </label><br>
+  <label>
+    <input type="checkbox" class="opcion" data-precio="55"> Combo (+$55)
+  </label>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+  <button onclick="agregarAlCarrito('Mango Habanero Chicken',145, this)">Añadir al carrito</button>
+</div>
+
+    <div class="producto">
+        <img src="img/hamburguesa6.jpg" alt="BUFFALO CHICKEN">
+  <h4>Buffalo Chicken</h4>
+  <p> Pollo frito, salsa buffalo, ranch, lechuga y mayo</p><br>
+  <p>Incluye papas chicas</p>
+  <p>Precio base: $145</p>
+
+  <!-- Opciones adicionales -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="19"> Papas grandes (+$19)
+  </label><br>
+  <label>
+    <input type="checkbox" class="opcion" data-precio="55"> Combo (+$55)
+  </label>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+  <button onclick="agregarAlCarrito('Buffalo Chicken',145, this)">Añadir al carrito</button>
+</div>
+
+    <div class="producto">
+        <img src="img/hamburguesa7.jpg" alt="GUACAMOLE CHICKEN">
+  <h4>Guacamole Chicken</h4>
+  <p> Pollo frito, guacamole, mayo, tocino y manchego</p><br>
+  <p>Incluye papas chicas</p>
+  <p>Precio base: $139</p>
+
+  <!-- Opciones adicionales -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="19"> Papas grandes (+$19)
+  </label><br>
+  <label>
+    <input type="checkbox" class="opcion" data-precio="55"> Combo (+$55)
+  </label>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+  <button onclick="agregarAlCarrito('Guacamole Chicken',139, this)">Añadir al carrito</button>
+</div>
+
+    <div class="producto">
+        <img src="img/hamburguesa8.jpg" alt="CHUCK BURGUER">
+  <h4>Chuck Burguer</h4>
+  <p> Res, salchicha para asar, cheddar, tocino, guacamole y mayo chipotle</p><br>
+  <p>Incluye papas chicas</p>
+  <p>Precio base: $169</p>
+
+  <!-- Opciones adicionales -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="19"> Papas grandes (+$19)
+  </label><br>
+  <label>
+    <input type="checkbox" class="opcion" data-precio="55"> Combo (+$55)
+  </label>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+  <button onclick="agregarAlCarrito('Chuck Burguer',169, this)">Añadir al carrito</button>
+</div><br>
+
+    <div class="producto">
+        <img src="img/hamburguesa9.jpg" alt="DOUBLE CHESEE BURGUER">
+  <h4>Double Chesee Burguer</h4>
+  <p> Doble carne de res, extra queso manchego y cheddar, tocino, jalapeños y mayo chipotle</p><br>
+  <p>Incluye papas chicas</p>
+  <p>Precio base: $169</p>
+
+  <!-- Opciones adicionales -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="19"> Papas grandes (+$19)
+  </label><br>
+  <label>
+    <input type="checkbox" class="opcion" data-precio="55"> Combo (+$55)
+  </label>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+  <button onclick="agregarAlCarrito('Double Chesee Burguer',169, this)">Añadir al carrito</button>
+</div>
+
+    <div class="producto">
+        <img src="img/hamburguesa10.jpg" alt="BBQ BACON CHICKEN">
+  <h4>BBQ Bacon Chicken</h4>
+  <p> Pollo frito, aros de cebolla, BBQ, tocino, manchego y cheddar</p><br>
+  <p>Incluye papas chicas</p>
+  <p>Precio base: $169</p>
+
+  <!-- Opciones adicionales -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="19"> Papas grandes (+$19)
+  </label><br>
+  <label>
+    <input type="checkbox" class="opcion" data-precio="55"> Combo (+$55)
+  </label>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+  <button onclick="agregarAlCarrito('Double Chesee Burguer',169, this)">Añadir al carrito</button>
+</div>
+
+    <div class="producto">
+        <img src="img/hamburguesa11.jpg" alt="HAWAINA BURGUER/CHICKEN">
+  <h4>Hawaiana Burguer/Chicken</h4>
+  <p> Res o pollo, piña asada, jamon, costra de quesos y salsa piña hot</p><br>
+  <p>Incluye papas chicas</p>
+  <p>Precio base: $159</p>
+
+  <!-- Opciones adicionales -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="19"> Papas grandes (+$19)
+  </label><br>
+  <label>
+    <input type="checkbox" class="opcion" data-precio="55"> Combo (+$55)
+  </label>
+
+    <p><strong>Elige carne:</strong></p>
+  <label>
+    <input type="radio" name="carne-hawaiana" class="carne" value="Res"> Res
+  </label><br>
+  <label>
+    <input type="radio" name="carne-hawaiana" class="carne" value="Pollo"> Pollo
+  </label><br>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+  <button onclick="agregarAlCarrito('Hawaiana Burguer/Chicken',159, this)">Añadir al carrito</button>
+</div>
+
+    <div class="producto">
+        <img src="img/hamburguesa12.jpg" alt="HOT CHICKEN SANDWICH">
+  <h4>Hot Chicken Sandwich</h4>
+  <p> Pollo frito HOT picante y adictivo, ensalada de col, pepinillos y chipotle mayo</p><br>
+  <p>Incluye papas chicas</p>
+  <p>Precio base: $159</p>
+
+  <!-- Opciones adicionales -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="19"> Papas grandes (+$19)
+  </label><br>
+  <label>
+    <input type="checkbox" class="opcion" data-precio="55"> Combo (+$55)
+  </label>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+  <button onclick="agregarAlCarrito('Hot Chicken Sandwich',159, this)">Añadir al carrito</button>
+</div>
+
+
+    <div class="categoria">
+      <h3 id="SNACKS">🍟 SNACKS</h3>
+      <div class="producto">
+        <img src="img/papas.jpg"alt="PAPAS FRITAS">
+        <h4>210gr de papas fritas sazonadas a tu eleccion</h4>
+        <p>$75</p>
+
+      <label for="sazon">Sazon:</label>
+      <select class="sazon" >
+        <option value="Classic">Classic</option>
+        <option value="Hot">  Hot</option>
+        <option value="Lemon">Lemon</option>
+        <option value="Cajun">Cajun</option>
+        <option value="Habanero">Habanero</option>
+        <option value="Cheddar">Cheddar</option>
+      </select>
+
+        <div class="cantidad">
+          <button onclick="cambiarCantidad(this, -1)">-</button>
+          <span>0</span>
+          <button onclick="cambiarCantidad(this, 1)">+</button>
+        </div>
+        <button onclick="agregarAlCarrito('Papas Fritas', 75, this)">Añadir al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="img/chickenfr.jpg" alt="CHICKEN FRIES">
+        <h4>210gr papas con pollo frito, buffalo, mayo chipotle y ranch + cebollin</h4>
+        <p>$129</p>
+
+        <div class="cantidad">
+          <button onclick="cambiarCantidad(this, -1)">-</button>
+          <span>0</span>
+          <button onclick="cambiarCantidad(this, 1)">+</button>
+        </div>
+        <button onclick="agregarAlCarrito('Chicken Fries', 129, this)">Añadir al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="img/papasgajo.jpg" alt="PAPAS GAJO CON PARMESANO">
+        <h4>210gr papas gajo con parmesano + dip mayo chipotle</h4>
+        <p>$119</p>
+
+        <div class="cantidad">
+          <button onclick="cambiarCantidad(this, -1)">-</button>
+          <span>0</span>
+          <button onclick="cambiarCantidad(this, 1)">+</button>
+        </div>
+        <button onclick="agregarAlCarrito('Papas Gajo Parmesano', 119, this)">Añadir al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="img/baconchef.jpg" alt="BACON CHESEE FRIES">
+        <h4>210gr papas con tocino con queso liquido</h4>
+        <p>$115</p>
+
+        <div class="cantidad">
+          <button onclick="cambiarCantidad(this, -1)">-</button>
+          <span>0</span>
+          <button onclick="cambiarCantidad(this, 1)">+</button>
+        </div>
+        <button onclick="agregarAlCarrito('Bacon Chesee Fries', 115, this)">Añadir al carrito</button>
+      </div><br>
+
+      <div class="producto">
+        <img src="img/aroscebolla.jpg" alt="AROS DE CEBOLLA">
+        <h4>10 aros de cebolla + ranch</h4>
+        <p>$79</p>
+
+        <div class="cantidad">
+          <button onclick="cambiarCantidad(this, -1)">-</button>
+          <span>0</span>
+          <button onclick="cambiarCantidad(this, 1)">+</button>
+        </div>
+        <button onclick="agregarAlCarrito('Aros de cebolla', 79, this)">Añadir al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="img/chesestick.jpg" alt="CHESEE STICKS">
+        <h4>8 dedos de queso mozzarella + ranch</h4>
+        <p>$109</p>
+
+        <div class="cantidad">
+          <button onclick="cambiarCantidad(this, -1)">-</button>
+          <span>0</span>
+          <button onclick="cambiarCantidad(this, 1)">+</button>
+        </div>
+        <button onclick="agregarAlCarrito('Chesee Sticks', 109, this)">Añadir al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="img/chesepop.jpg" alt="CHESEE POPS">
+        <h4>Palomitas de pollo + ketchup</h4>
+        <p>$79</p>
+
+        <div class="cantidad">
+          <button onclick="cambiarCantidad(this, -1)">-</button>
+          <span>0</span>
+          <button onclick="cambiarCantidad(this, 1)">+</button>
+        </div>
+        <button onclick="agregarAlCarrito('CHESEE POPS', 79, this)">Añadir al carrito</button>
+      </div>
+
+<div class="producto">
+  <img src="img/chickentender.jpg" alt="CHICKEN TENDERS">
+  <h4>Tiras de pollo frito + dip de salsa + ranch</h4>
+
+  <!-- Opciones adicionales como radio buttons -->
+  <label>
+    <input type="radio" name="piezas" class="opcion" data-precio="135"> 3 piezas ($135)
+  </label><br>
+  <label>
+    <input type="radio" name="piezas" class="opcion" data-precio="269"> 6 piezas ($269)
+  </label><br>
+  <label>
+    <input type="radio" name="piezas" class="opcion" data-precio="399"> 9 piezas ($399)
+  </label>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+  <button onclick="agregarAlCarrito('Tiras de pollo', 0, this)">Añadir al carrito</button>
+</div><br>
+
+    <div class="categoria">
+      <h3 id="BONELESS">🍗 BONELESS</h3>
+<div class="producto">
+  <img src="img/boneless.jpg" alt="BONELESS">
+  <h4>Boneless de pollo</h4>
+
+  <!-- Tamaños (radio buttons) -->
+  <label>
+    <input type="radio" name="boneless-tamaño" class="opcion" data-precio="129"> Snack 6 pz ($129)
+  </label><br>
+  <label>
+    <input type="radio" name="boneless-tamaño" class="opcion" data-precio="195"> Personal 10 pz ($195)
+  </label><br>
+  <label>
+    <input type="radio" name="boneless-tamaño" class="opcion" data-precio="339"> Grande 20 pz ($339)
+  </label><br>
+  <label>
+    <input type="radio" name="boneless-tamaño" class="opcion" data-precio="409"> Xtra Grande 30 pz ($409)
+  </label>
+
+  <!-- Salsas (select) -->
+  <label>Salsa:
+    <select class="sazon">
+      <option value="Tamarindo">Tamarindo</option>
+      <option value="BBQ">BBQ</option>
+      <option value="Lemon Pepper">Lemon Pepper</option>
+      <option value="Piña Hot">Piña Hot</option>
+      <option value="Mango Habanero">Mango Habanero</option>
+      <option value="Buffalo">Buffalo</option>
+      <option value="BBQ Chipotle">BBQ Chipotle</option>
+      <option value="Xtra Hot">Xtra Hot</option>
+      <option value="Cajun">Cajun</option>
+      <option value="Especiales">Especiales</option>
+      <option value="Takis Fuego">Takis Fuego</option>
+      <option value="Doritos Nacho">Doritos Nacho</option>
+    </select>
+  </label>
+
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Boneless', 0, this)">Añadir al carrito</button>
+</div>
+
+    <div class="categoria">
+      <h3 id="BEBIDAS">🍹 BEBIDAS</h3>
+<div class="producto">
+  <img src="img/refresco355ml.jpg" alt="Refresco" />
+  <h4>REFRESCO 355 ML ($36)</h4>
+
+  <!-- Selección de soda -->
+  <label>Sabor:
+    <select class="sazon">
+      <option value="Fanta">Fanta</option>
+      <option value="Coca">Coca</option>
+      <option value="Coca Sin Azúcar">Coca Sin Azúcar</option>
+      <option value="Mundet">Mundet</option>
+      <option value="Dellaware">Dellaware</option>
+      <option value="Sprite">Sprite</option>
+    </select>
+  </label>
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Refresco 355 ml', 36, this)">Añadir al carrito</button>
+</div>
+
+<div class="producto">
+  <img src="img/topochico.jpg" alt="Topo Chico" />
+  <h4>Topo Chico 600 ml ($39)TOPO CHICO 600 ML ($39)</h4>
+
+  <!-- Opción tipo suero -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="15"> Prepararlo tipo suero (+$15)
+  </label>
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Topo Chico 600 ml', 39, this)">Añadir al carrito</button>
+</div>
+
+<div class="producto">
+  <img src="img/cerveza350ml.jpg" alt="Cerveza" />
+  <h4>CERVEZA 350 ML ($50)</h4>
+
+  <!-- Selección de cerveza -->
+  <label>Elige tu cerveza:
+    <select class="sazon">
+      <option value="Modelo Especial">Modelo Especial</option>
+      <option value="Modelo Negra">Modelo Negra</option>
+      <option value="Ultra">Ultra</option>
+    </select>
+  </label><br>
+
+  <!-- Opciones extras -->
+  <label>
+    <input type="checkbox" class="opcion" data-precio="25"> Michelada (+$25)
+  </label><br>
+  <label>
+    <input type="checkbox" class="opcion" data-precio="15"> Chelada (+$15)
+  </label>
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Cerveza 350 ml', 50, this)">Añadir al carrito</button>
+</div>
+
+<div class="producto">
+  <img src="img/drink-gin-fruits.jpg" alt="Drink Gin & Fruits" />
+  <h4>DRINK: GIN & FRUITS ($159)</h4>
+  <p>Ginebra, frutos rojos, romero y pop de jamaica</p>  
+
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Drink Gin & Fruits', 159, this)">Añadir al carrito</button>
+</div><br>
+
+<div class="producto">
+  <img src="img/drink-mangomoj.jpg" alt="Drink Mango Mojito" />
+  <h4>DRINK: MANGO MOJITO ($159)</h4>
+  <p>Ron, fusion de mango, jugo de limon y pop de mango</p>  
+
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Drink Mango Mojito', 159, this)">Añadir al carrito</button>
+</div>
+
+<div class="producto">
+  <img src="img/drink-spicychuck.jpg" alt="Drink Spicy Chuck" />
+  <h4>DRINK: SPICY CHUCK($159)</h4>
+  <p>Vodka de tamarindo, limon, jugo de naranja y pop de tamarindo</p>  
+
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Drink Spicy Chuck', 159, this)">Añadir al carrito</button>
+</div>
+
+<div class="producto">
+  <img src="img/piñarita.jpg" alt="Drink Piñarita" />
+  <h4>DRINK: PIÑARITA($159)</h4>
+  <p>Tequila, jugo de piña, limon, toque picante y pop de piña</p>  
+
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Drink Piñarita', 159, this)">Añadir al carrito</button>
+</div>
+
+<div class="producto">
+  <img src="img/malteada.jpg" alt="Malteada" />
+  <h4>MALTEADA ($99)</h4>
+  <p>Hechas al momento, espesa y deliciosas, 470 ml</p>
+
+  <!-- Selección de sabor -->
+  <label>Elige tu sabor:
+    <select class="sazon">
+      <option value="Chocolate">Chocolate</option>
+      <option value="Fresa">Fresa</option>
+      <option value="Vainilla">Vainilla</option>
+      <option value="Cookies & Cream">Cookies & Cream</option>
+    </select>
+  </label>
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Malteada', 99, this)">Añadir al carrito</button>
+</div><br>
+
+<div class="producto">
+  <img src="img/freshers.jpg" alt="Freshers" />
+  <h4>FRESHERS ($49)</h4>
+  <p>Refrescantes bebidas naturales 470 ml</p>
+
+  <!-- Selección de sabor -->
+  <label>Elige tu sabor:
+    <select class="sazon">
+      <option value="Tropical Mango">Tropical Mango</option>
+      <option value="Frutos Rojos">Frutos Rojos</option>
+      <option value="Maracuya">Maracuya</option>
+    </select>
+  </label>
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Freshers', 49, this)">Añadir al carrito</button>
+</div>
+
+<div class="categoria">
+  <h3 id="POSTRES">🍪 POSTRES</h3>
+<div class="producto">
+  <img src="img/fried-oreos.jpg" alt="Fried Oreos" />
+  <h4>FRIED OREOS ($109)</h4>
+  <p>Oreos fritas crujientes, servidos con una bola de helado de vainilla cremoso y azucar glass</p>
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Fried Oreos', 109, this)">Añadir al carrito</button>
+</div>
+
+<div class="producto">
+  <img src="img/chessecake.jpg" alt="Cheseecake Guayaba" />
+  <h4>CHESEECAKE GUAYABA ($110)</h4>
+  <p>Una maravilla tropical con un toque dulce y cremoso, perfecta para los amantes de los sabores exoticos</p>
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Cheseecake Guayaba', 110, this)">Añadir al carrito</button>
+</div>
+
+<div class="producto">
+  <img src="img/churros.jpg" alt="Churros Madrid" />
+  <h4>CHURROS MADRID ($104)</h4>
+  <p>Deliciosos y crujientes churros recien hechos, servidos con un chocolate espeso y exquisito para sumergir</p>
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Churros Madrid', 104, this)">Añadir al carrito</button>
+</div>
+
+<div class="categoria">
+  <h3 id="OTROS">🍭 OTROS</h3>
+
+<div class="producto">
+  <img src="img/cajita-chuck.jpg" alt="Cajita Chuck Infantil" />
+  <h4>CAJITA CHUCK INFANTIL ($134)</h4>
+  <p>Una mini chesee burguer o chicken pops, papas, un juguito y una sorpresa especial</p>
+
+  <!-- Selección de producto dentro de la cajita -->
+  <label>Elige cheeseburguer o chicken pops:
+    <select class="sazon">
+      <option value="Cheeseburger">Cheeseburger</option>
+      <option value="Chicken Pops">Chicken Pops</option>
+    </select>
+  </label>
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Cajita Chuck Infantil', 134, this)">Añadir al carrito</button>
+</div>
+
+<div class="producto">
+  <img src="img/ensalada.jpg" alt="Ensalada de Pollo" />
+  <h4>ENSALADA DE POLLO ($129)</h4>
+  <p>Pechuga de pollo asada, lechuga, jitomate, aguacate de pepino, mango + dip ranch y salmas</p>
+
+  <!-- Cantidad -->
+  <div class="cantidad">
+    <button onclick="cambiarCantidad(this, -1)">-</button>
+    <span>0</span>
+    <button onclick="cambiarCantidad(this, 1)">+</button>
+  </div>
+
+  <button onclick="agregarAlCarrito('Ensalada de Pollo', 129, this)">Añadir al carrito</button>
+</div>
+    </div>
+  </main>
+
+  <!-- Carrito -->
+  <aside class="carrito">
+    <h3>🛒 Carrito</h3>
+    <ul id="lista-carrito"></ul>
+    <p>Subtotal: $<span id="subtotal">0</span></p>
+    <p>Total: $<span id="total">0</span></p>
+    <button id="btn-pedido">Realizar pedido</button><br>
+    <button id="btn-vaciar-carrito">Vaciar carrito</button>
+  </aside>
+
+  <!-- Script del carrito -->
+  <script src="script.js"></script>
+</body>
+</html>
