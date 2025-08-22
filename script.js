@@ -105,7 +105,7 @@ document.getElementById("btn-pedido").addEventListener("click", () => {
   });
   mensaje += `Total: $${subtotal}`;
 
-  // ✅ Corrección aplicada aquí
   let url = `https://api.whatsapp.com/send?phone=525578335249&text=${encodeURIComponent(mensaje)}`;
   window.open(url, "_blank");
 });
+
